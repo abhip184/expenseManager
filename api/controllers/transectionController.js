@@ -15,7 +15,8 @@ exports.getAccountBalance = async (req, res, next) => {
     ]).catch(err => {
         console.log(err);
         return res.status(500).json({
-            message: err
+            error:err,
+            message: "Server Error"
         })
     })
 
@@ -26,7 +27,8 @@ exports.getAccountBalance = async (req, res, next) => {
     ]).catch(err => {
         console.log(err);
         return res.status(500).json({
-            message: err
+            error:err,
+            message: "Server Error"
         })
     })
 
@@ -45,6 +47,7 @@ exports.getAccountBalance = async (req, res, next) => {
     }
 
     const currentBalance = incomeAmount - expenseAmount;
+
     console.log(currentBalance + "currentBalance ")
 
     //updating new balance to account
@@ -105,12 +108,12 @@ exports.addTransection = async (req, res, next) => {
     }
 
     var result = await transection.save().catch(err => {
+        console.log(err)
         return res.status(500).json({
             error: err,
-            message: "error occured while saving transection"
+            message: "Error occured while saving transection"
         })
     })
-    console.log(result)
 }
 
 exports.editTransection = (req, res) => {
@@ -135,7 +138,8 @@ exports.editTransection = (req, res) => {
         .catch(err => {
             console.log(err);
             return res.status(500).json({
-                message:err
+                error:err,
+                message: "Server Error"
             })
         })
 }
@@ -202,7 +206,7 @@ exports.deleteTransection = async (req, res, next) => {
     const result = await Transection.remove({ _id: id }).catch(err => {
         return res.status(500).json({
             error: err,
-            message: "error occurred while deleting transection"
+            message: "Error occurred while deleting transection"
         })
     })
     return res.status(200).json({

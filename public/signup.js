@@ -38,8 +38,6 @@ $(document).ready(function(){
         });
   
         $('#defaultAccountForm').on('submit', function(){
-          alert(userId)
-          console.log();
           var name = $('#account_name').val();
           var amount = $('#account_amount').val();
             $.ajax({

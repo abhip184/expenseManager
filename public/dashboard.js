@@ -32,9 +32,8 @@
         url: '/accounts/' + idHolder,
         success: function (data) {
           $('.modal').modal('close');
-          console.log(data)
           M.toast({
-            html: "Account deleted"
+            html: data.message
           })
           $('#' + idHolder).parent().parent().parent().parent().fadeOut();
           location.reload()
@@ -59,6 +58,11 @@
       var accountId = idHolder;
       console.log(accountId);
 
+      if(!newName.trim())
+      {
+        M.toast({ html: "Enter Valid Name" })
+        return false
+      }
       $.ajax({
         type: 'PATCH',
         url: '/accounts/' + accountId,
@@ -93,6 +97,11 @@
       var name = $('#account_name').val();
       var amount = $('#account_amount').val();
 
+      if(!name.trim())
+      {
+        M.toast({ html: "Enter Valid Name" })
+        return false
+      }
       $.ajax({
         type: 'POST',
         url: '/accounts',
@@ -107,7 +116,7 @@
           location.reload();
         },
         error: function (xhr, ajaxOptions, thrownError, data) {
-          if (xhr.status >= 300) {
+          if (xhr.status >= 400) {
             var data = JSON.parse(xhr.responseText);
             M.toast({
               html: data.message
@@ -125,9 +134,5 @@
       // Animate loader off screen
   $(".progress").fadeOut("slow");
   
-  //preventing space as input
-  $('input').keypress(function( e ) {
-  if(e.which === 32) 
-      return false;
-});
+ 
   });

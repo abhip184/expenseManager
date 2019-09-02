@@ -42,7 +42,7 @@ $('#userIntro').text("Hello " + userIntro)
                  location.reload()
              },
              error: function (xhr, ajaxOptions, thrownError, data) {
-                 if (xhr.status >= 300) {
+                 if (xhr.status >= 400) {
                      var data = JSON.parse(xhr.responseText);
                      M.toast({
                          html: data.err
@@ -84,7 +84,7 @@ $('#userIntro').text("Hello " + userIntro)
                  location.reload()
              },
              error: function (xhr, ajaxOptions, thrownError, data) {
-                 if (xhr.status >= 300) {
+                 if (xhr.status >= 400) {
                      var data = JSON.parse(xhr.responseText);
                      M.toast({
                          html: data.err
@@ -105,11 +105,11 @@ $('#userIntro').text("Hello " + userIntro)
              console.log(data)
              $("#balanceHolder").text(data.balance + " Rs.")
              M.toast({
-                 html: "Balance Updated " + data.balance
+                 html: "Balance Updated " + data.balance,displayLength:1300
              })
          },
          error: function (xhr, ajaxOptions, thrownError, data) {
-             if (xhr.status >= 300) {
+             if (xhr.status >= 400) {
                  var data = JSON.parse(xhr.responseText);
                  M.toast({
                      html: data.err
@@ -155,14 +155,15 @@ $('#userIntro').text("Hello " + userIntro)
                      })
                      return false
                      // location.reload()
-                 },
+                 }, 
                  error: function (xhr, ajaxOptions, thrownError, data) {
-                     if (xhr.status >= 300) {
+                     if (xhr.status >= 400) {
                          var data = JSON.parse(xhr.responseText);
                          M.toast({
                              html: data.err
                          })
                      }
+                     return false
                  }
              });
          } else {
@@ -185,7 +186,7 @@ $('#userIntro').text("Hello " + userIntro)
                      location.reload()
                  },
                  error: function (xhr, ajaxOptions, thrownError, data) {
-                     if (xhr.status >= 300) {
+                     if (xhr.status >= 400) {
                          var data = JSON.parse(xhr.responseText);
                          M.toast({
                              html: data.err
@@ -216,7 +217,7 @@ $('#userIntro').text("Hello " + userIntro)
                  location.reload()
              },
              error: function (xhr, ajaxOptions, thrownError, data) {
-                 if (xhr.status >= 300) {
+                 if (xhr.status >= 400) {
                      var data = JSON.parse(xhr.responseText);
                      M.toast({
                          html: data.message

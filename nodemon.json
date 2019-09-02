@@ -1,6 +1,7 @@
 {
     "env": {
         "mongopass": "dbpass",
-        "jwtkey": "secret"
+        "jwtkey": "secret",
+        "mailpass":"#aaditya"
     }
 }

@@ -9,21 +9,21 @@ exports.signup_user = async (req, res, next) => {
     var user = await User.find({ email: req.body.email })
         .catch(err => {
             res.status(500).json({
-                error: err
+                error:err,
+                message: "Server Error"
             })
         })
 
     if (user.length >= 1) {
         return res.status(409).json({
-            message: "email exists"
+            errorInfo:"Unauthorized",
+            message: "Email exists"
         })
     }
 
     //clearing existing cookies
     res.clearCookie("token");
-    res.clearCookie("userId");
     res.clearCookie("firstName");
-    res.clearCookie("email");
     
     //getting hash for password
     const hash = await bcrypt.hash(req.body.password, 10)
@@ -68,15 +68,15 @@ exports.signup_user = async (req, res, next) => {
         service: 'gmail',
         auth: {
             user: 'abhiabhiabhi123.ap@gmail.com',
-            pass: '#aaditya'
+            pass: process.env.mailpass
         }
     });
 
     var mailOptions = {
         from: 'abhiabhiabhi123.ap@gmail.com',
         to: result.email,
-        subject: "Welcome" + result.firstName,
-        html: '<h1>welcome to expense manager! </h1>'
+        subject: "Welcome " + result.firstName,
+        html: '<h1>Welcome to expense manager! </h1> <h2> <a href="http://192.168.0.125:8000/login"> click here</a> to get started </h2>'
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
@@ -101,9 +101,7 @@ exports.signup_user = async (req, res, next) => {
 exports.login_user = async (req, res, next) => {
 
     res.clearCookie("token");
-    res.clearCookie("userId");
     res.clearCookie("firstName");
-    res.clearCookie("email");
 
 
     var user = await User.find({ email: req.body.email })

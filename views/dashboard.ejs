@@ -84,7 +84,7 @@
               <blockquote> Owner </blockquote>
               <%= account.owner.email %>
               <% if(account.invites.length > 0) { %>
-              <blockquote>shared With <%=account.invites.length%> friends</blockquote>
+              <blockquote><strong>Shared </strong> With <%=account.invites.length%> friends</blockquote>
               <i class="truncate">
                 <% for(i=0;i < account.invites.length; i++)
                                 { %>
@@ -136,7 +136,7 @@
                 <blockquote> Owner <%= account.owner.firstName %> </blockquote>
                 <%= account.owner.email %>
                 <% if(account.invites.length > 0) { %>
-                <blockquote>shared With <%=account.invites.length%> friends</blockquote>
+                <blockquote><strong>Shared</strong> With <%=account.invites.length%> friends</blockquote>
                 <i class="truncate">
                   <% for(i=0;i < account.invites.length; i++)
                                 { %>

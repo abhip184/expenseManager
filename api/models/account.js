@@ -6,6 +6,7 @@ const accountSchema = mongoose.Schema({
     currentBalance:{type: Number, required:true},
     owner:{type: mongoose.Schema.Types.ObjectId, ref:'User', required:true},
     invites:[{type:String,}],
+    createdAt:{ type : Date, default: Date.now }
 })
 
 
