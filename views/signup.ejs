@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>Welcome</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
-  <link href="materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+    crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
 
 </head>
+
 <body>
   <nav class="indigo" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Expense Manager</a>
@@ -21,160 +26,94 @@
         <li><a href="/login">Login</a></li>
       </ul>
 
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="/login">Login</a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
 
+  <ul id="nav-mobile" class="sidenav">
+    <li><a href="/login">Login</a></li>
+  </ul>
   <br>
-<div class="row" id="signUpRow">
-    <div class="col s12 m4 offset-m4" >
-      <div class="card white" >
+  <div class="row" id="signUpRow">
+    <div class="col s12 m4 offset-m4">
+      <div class="card white">
         <div class="card-content black-text">
           <span class="card-title">Sign Up</span>
-         
-  <div class="row">
-    <form class="col s12" enctype="multipart/form-data" id="signUpForm">
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="first_name" type="text" class="validate" required>
-          <label for="first_name">First Name</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate" required>
-          <label for="last_name">Last Name</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" class="validate" required>
-          <label for="email">Email</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate" minlength="8" required>
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <div class="row center-align">
-        <button class="btn waves-effect waves-light indigo" type="submit" >Next
-            <i class="material-icons right">send</i>
-          </button>  
-            </div>
-      
-    </form>
-  </div>
 
-  
+          <div class="row">
+            <form class="col s12" enctype="multipart/form-data" id="signUpForm">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input id="first_name" type="text" class="validate" required>
+                  <label for="first_name">First Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input id="last_name" type="text" class="validate" required>
+                  <label for="last_name">Last Name</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="email" type="email" class="validate" required>
+                  <label for="email">Email</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="password" type="password" class="validate" minlength="8" required>
+                  <label for="password">Password</label>
+                </div>
+              </div>
+              <div class="row center-align">
+                <button class="btn waves-effect waves-light indigo" type="submit">Next
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+
         </div>
       </div>
     </div>
   </div>
 
   <div class="row hide" id="defaultAccountRow">
-      <div class="col s12 m4 offset-m4" >
-        <div class="card white" >
-          <div class="card-content black-text">
-            <span class="card-title" id="userGreting">Set up Default Account</span>
-           
-    <div class="row">
-      <form class="col s12" enctype="multipart/form-data" id="defaultAccountForm">
-        <div class="row">
-          <div class="input-field col s6">
-            <input id="account_name" type="text" placeholder="Ex. General, Personal, " class="validate" required>
-            <label for="account_name">Account Name</label>
-          </div>
-          <div class="input-field col s6">
-            <input id="account_amount" type="number" class="validate" required>
-            <label for="account_amount">Initial Amount</label>
-          </div>
-        </div>
-          <button class="btn waves-effect waves-light indigo" type="submit" >Set Up & login
-              <i class="material-icons right">send</i>
-            </button>  
+    <div class="col s12 m4 offset-m4">
+      <div class="card white">
+        <div class="card-content black-text">
+          <span class="card-title" id="userGreting">Set up Default Account</span>
+
+          <div class="row">
+            <form class="col s12" enctype="multipart/form-data" id="defaultAccountForm">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input id="account_name" type="text" placeholder="Ex. General, Personal, " class="validate" required>
+                  <label for="account_name">Account Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input id="account_amount" type="number" class="validate" required>
+                  <label for="account_amount">Initial Amount</label>
+                </div>
               </div>
-        
-      </form>
-    </div>
-  
-    
+              <button class="btn waves-effect waves-light indigo" type="submit">Start
+                <i class="material-icons right">send</i>
+              </button>
           </div>
+
+          </form>
         </div>
       </div>
     </div>
+  </div>
+  </div>
 
 
   <!--  Scripts-->
   <script src="materialize/js/materialize.js"></script>
-
- 
-<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
-crossorigin="anonymous"></script>
-<script>
-$(document).ready(function(){
-  var userId;
-      $('#signUpForm').on('submit', function(){
-        var email = $('#email').val();
-        var password = $('#password').val();
-        var firstName = $('#first_name').val();
-        var lastName = $('#last_name').val();
-          $.ajax({
-            type: 'POST',
-            url: 'users/signup',
-            data:{email: email, password:password, firstName:firstName, lastName,lastName},
-            success: function (data) {
-              Cookies.set('email', data.email);
-              Cookies.set('userId', data.userId);
-              Cookies.set('firstName', data.firstName);
-
-              console.log(data.userId)
-              userId = data.userId;
-              console.log("userid is" + userId);
-              M.toast({ html: data.message })
-              $('#signUpRow').addClass("hide")
-              $('#userGreting').val(firstName)
-              $('#defaultAccountRow').removeClass("hide")
-            },
-            error:function (xhr, ajaxOptions, thrownError, data){
-              if(xhr.status>=300) {
-                var data = JSON.parse(xhr.responseText);
-                M.toast({ html: data.message })
-              }
-          }
-          });
-    
-         return false;
-    
-      });
-
-      $('#defaultAccountForm').on('submit', function(){
-        alert(userId)
-        console.log();
-        var name = $('#account_name').val();
-        var amount = $('#account_amount').val();
-          $.ajax({
-            type: 'POST',
-            url: 'accounts',
-            data:{accountName:name, currentBalance:amount, owner:userId},
-            success: function (data) {
-              window.location.href= "/login";
-            },
-            error:function (xhr, ajaxOptions, thrownError, data){
-              if(xhr.status>=300) {
-                var data = JSON.parse(xhr.responseText);
-                M.toast({ html: data.message })
-              }
-          }
-          });
-    
-         return false;
-    
-      });
-    });
-    
-</script>
+  <script src="/signup.js">
+  </script>
 </body>
+
 </html>

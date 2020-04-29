@@ -15,7 +15,8 @@ exports.getAccountBalance = async (req, res, next) => {
     ]).catch(err => {
         console.log(err);
         return res.status(500).json({
-            message: err
+            error:err,
+            message: "Server Error"
         })
     })
 
@@ -26,7 +27,8 @@ exports.getAccountBalance = async (req, res, next) => {
     ]).catch(err => {
         console.log(err);
         return res.status(500).json({
-            message: err
+            error:err,
+            message: "Server Error"
         })
     })
 
@@ -45,6 +47,7 @@ exports.getAccountBalance = async (req, res, next) => {
     }
 
     const currentBalance = incomeAmount - expenseAmount;
+
     console.log(currentBalance + "currentBalance ")
 
     //updating new balance to account
@@ -52,7 +55,7 @@ exports.getAccountBalance = async (req, res, next) => {
         .catch(err => {
             console.log(err)
             return res.status(500).json({
-                message: "error occured to update balance",
+                message: "Error occured While updating balance",
                 error: err
             })
         })
@@ -72,7 +75,7 @@ exports.addTransection = async (req, res, next) => {
     if (req.body.type == "income") {
         transection = new Transection({
             _id: new mongoose.Types.ObjectId(),
-            to: req.cookies.userId,
+            to: req.userAuth.id,
             amount: req.body.amount,
             type: req.body.type,
             category: req.body.category,
@@ -82,7 +85,7 @@ exports.addTransection = async (req, res, next) => {
     else if (req.body.type == "expense") {
         transection = new Transection({
             _id: new mongoose.Types.ObjectId(),
-            from: req.cookies.userId,
+            from: req.userAuth.id,
             amount: req.body.amount,
             type: req.body.type,
             category: req.body.category,
@@ -93,7 +96,7 @@ exports.addTransection = async (req, res, next) => {
         transection = new Transection({
             _id: new mongoose.Types.ObjectId(),
             to: req.body.to,
-            from: req.body.from,
+            from: req.userAuth.id,
             amount: req.body.amount,
             type: req.body.type,
             category: req.body.category,
@@ -105,12 +108,12 @@ exports.addTransection = async (req, res, next) => {
     }
 
     var result = await transection.save().catch(err => {
+        console.log(err)
         return res.status(500).json({
             error: err,
-            message: "error occured while saving transection"
+            message: "Error occured while saving transection"
         })
     })
-    console.log(result)
 }
 
 exports.editTransection = (req, res) => {
@@ -135,7 +138,8 @@ exports.editTransection = (req, res) => {
         .catch(err => {
             console.log(err);
             return res.status(500).json({
-                message:err
+                error:err,
+                message: "Server Error"
             })
         })
 }
@@ -151,7 +155,7 @@ exports.getTransectionsByAccount = async (req, res, next) => {
             message:err
         })
     })
-    var accountsForOwner = await Account.find({ owner: req.cookies.userId })
+    var accountsForOwner = await Account.find({ owner: req.userAuth.id })
     .catch(err => {
         console.log(err);
         return res.status(500).json({
@@ -172,7 +176,7 @@ exports.getTransectionsByAccount = async (req, res, next) => {
         .exec()
         .then(transections => {
             var owner = false;
-            if (account.owner.email == req.cookies.email) {
+            if (account.owner._id == req.userAuth.id) {
                 owner = true
             }
             console.log("owner")
@@ -183,7 +187,7 @@ exports.getTransectionsByAccount = async (req, res, next) => {
                 owner: owner,
                 ownerInfo: account,
                 accountId: id,
-                currentUser: req.cookies.userId,
+                currentUser: req.userAuth.id,
                 accountsForOwner: accountsForOwner
             })
         })
@@ -202,7 +206,7 @@ exports.deleteTransection = async (req, res, next) => {
     const result = await Transection.remove({ _id: id }).catch(err => {
         return res.status(500).json({
             error: err,
-            message: "error occurred while deleting transection"
+            message: "Error occurred while deleting transection"
         })
     })
     return res.status(200).json({

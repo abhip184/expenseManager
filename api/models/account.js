@@ -6,10 +6,9 @@ const accountSchema = mongoose.Schema({
     currentBalance:{type: Number, required:true},
     owner:{type: mongoose.Schema.Types.ObjectId, ref:'User', required:true},
     invites:[{type:String,}],
+    createdAt:{ type : Date, default: Date.now }
 })
 
- accountSchema.post('save', function(doc) {
-    console.log('%s has been saved', doc._id);
-  });
+
 
 module.exports = mongoose.model('Account',accountSchema);

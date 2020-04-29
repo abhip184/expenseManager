@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
   <link href="materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
 
@@ -67,43 +69,7 @@
 
 
   <!--  Scripts-->
+  <script src="/login.js"></script>
   <script src="materialize/js/materialize.js"></script>
-
- 
-<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
-crossorigin="anonymous"></script>
-<script>
- $(document).ready(function () {
-
-      $('#loginForm').on('submit', function () {
-        var email = $('#email').val();
-        var password = $('#password').val();
-        console.log(email)
-        console.log(password)
-        $.ajax({
-          type: 'POST',
-          url: 'users/login',
-          data: {email:email, password:password},
-          success: function (data) {
-            Cookies.set('token', data.token);
-            Cookies.set('email', data.email);
-              Cookies.set('userId', data.userId);
-              Cookies.set('firstName', data.firstName);
-            M.toast({ html: data.message })
-            window.location.href= "/accounts/user/"+data.userId;
-          },
-          error: function (xhr, ajaxOptions, thrownError, data) {
-            if (xhr.status >= 300) {
-              var data = JSON.parse(xhr.responseText);
-              M.toast({ html: data.message })
-            }
-            return false;
-          }
-        });
-        return false;
-
-      });
-    });
-    </script>
 </body>
 </html>
